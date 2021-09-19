@@ -1,11 +1,12 @@
 import Navigation from "./components/Navigation";
-import Search from "./components/Search";
+// import AllCamps from "./components/AllCamps";
+import SingleCamp from "./components/SingleCamp";
 
 function App() {
   return (
     <div className="font-Archivo container mx-auto py-10 px-5">
       <Navigation />
-      <Search />
+      <SingleCamp />
     </div>
   );
 }

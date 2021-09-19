@@ -1,5 +1,3 @@
-import CampsGrid from "./CampsGrid";
-
 function Search() {
   return (
     <>
@@ -23,7 +21,6 @@ function Search() {
           or add your own campground
         </a>
       </div>
-      <CampsGrid />
     </>
   );
 }

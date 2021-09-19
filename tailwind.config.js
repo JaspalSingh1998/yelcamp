@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      gridTemplateColumns: {
+        custom: "1fr 2fr",
+      },
       fontFamily: {
         Archivo: ["Archivo", "sans-serif"],
       },
