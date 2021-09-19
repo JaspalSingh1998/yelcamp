@@ -1,7 +1,11 @@
+import Navigation from "./components/Navigation";
+import Search from "./components/Search";
+
 function App() {
   return (
-    <div className="min-h-screen bg-indigo-600">
-      <h1>Hello</h1>
+    <div className="font-Archivo container mx-auto py-10 px-5">
+      <Navigation />
+      <Search />
     </div>
   );
 }

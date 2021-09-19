@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Archivo: [],
+        Archivo: ["Archivo", "sans-serif"],
       },
       colors: {
         "landing-bg": "#F9F6F1",
