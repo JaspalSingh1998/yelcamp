@@ -5,6 +5,9 @@ import SevenSistersWaterfall from "../Assets/Camp Images/Seven Sisters Waterfall
 import LatikRiverside from "../Assets/Camp Images/Latik Riverside.jpg";
 import BuloySprings from "../Assets/Camp Images/Buloy Springs.jpg";
 
+import { Link } from "react-router-dom";
+import * as ROUTES from "../constants/Routes";
+
 function CampsGrid() {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -18,9 +21,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
       <div className="card border-item-border border rounded-md p-4">
         <header className="mb-4">
@@ -37,9 +43,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
       <div className="card border-item-border border rounded-md p-4">
         <header className="mb-4">
@@ -52,9 +61,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
       <div className="card border-item-border border rounded-md p-4">
         <header className="mb-4">
@@ -70,9 +82,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
       <div className="card border-item-border border rounded-md p-4">
         <header className="mb-4">
@@ -88,9 +103,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
       <div className="card border-item-border border rounded-md p-4">
         <header className="mb-4">
@@ -107,9 +125,12 @@ function CampsGrid() {
             </p>
           </div>
         </header>
-        <button className="w-full font-bold border border-item-border py-4 rounded-md">
+        <Link
+          to={ROUTES.SINGLECAMP}
+          className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
+        >
           View Campground
-        </button>
+        </Link>
       </div>
     </div>
   );
