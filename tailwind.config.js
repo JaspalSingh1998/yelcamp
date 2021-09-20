@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         custom: "1fr 2fr",
+        double: "2fr 1.5fr",
       },
       fontFamily: {
         Archivo: ["Archivo", "sans-serif"],
