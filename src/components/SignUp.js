@@ -1,9 +1,44 @@
+import { useState } from "react";
+import { withFirebase } from "./Firebase";
+
 import Logo from "../Assets/Logo.png";
 import Avatar from "../Assets/User Testimonial.svg";
 import * as ROUTES from "../constants/Routes";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-function SignUp() {
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+  error: null,
+};
+
+function SignUp(props) {
+  const [user, setUser] = useState(INITIAL_STATE);
+
+  const { email, password, error } = user;
+
+  const { firebase, history } = props;
+
+  function handleSubmit(event) {
+    firebase
+      .doCreateUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        console.log(authUser);
+        history.push(ROUTES.ALLCAMPS);
+      })
+      .catch((error) => {
+        console.log(error);
+        setUser({ error });
+      });
+    event.preventDefault();
+  }
+
+  function handleChange(event) {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  }
+
+  const isInvalid = email === "" || password === "";
+
   return (
     <div className="lg:grid lg:grid-cols-double lg:items-stretch">
       <div className="px-5 py-10 md:px-10 lg:px-32">
@@ -17,7 +52,7 @@ function SignUp() {
         <h1 className="font-bold text-4xl mb-9 mt-32">
           Start exploring camps from all around the world.
         </h1>
-        <div className="md:w-3/4">
+        <form onSubmit={handleSubmit} className="md:w-3/4">
           <div className="mb-6">
             <label htmlFor="email" className="text-text-muted block mb-4">
               Email
@@ -26,6 +61,8 @@ function SignUp() {
               type="email"
               placeholder="john@example.com"
               name="email"
+              value={email}
+              onChange={handleChange}
               className="p-4 bg-landing-bg text-text-muted w-full rounded-md"
             />
           </div>
@@ -37,10 +74,16 @@ function SignUp() {
               type="password"
               placeholder="At least 6 Characters Long"
               name="password"
+              value={password}
+              onChange={handleChange}
               className="p-4 bg-landing-bg text-text-muted w-full rounded-md"
             />
           </div>
-          <button className="w-full bg-black text-white rounded-md font-bold p-4 mb-4">
+          <button
+            type="submit"
+            disabled={isInvalid}
+            className="w-full bg-black text-white rounded-md font-bold p-4 mb-4"
+          >
             Create An Account
           </button>
           <p className="text-text-muted">
@@ -49,7 +92,8 @@ function SignUp() {
               Sign in
             </Link>{" "}
           </p>
-        </div>
+          <p>{error && error.message}</p>
+        </form>
       </div>
       <div className="bg-landing-bg py-12 px-5 md:px-10 lg:px-32 lg:flex lg:items-center">
         <div>
@@ -70,4 +114,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default withRouter(withFirebase(SignUp));

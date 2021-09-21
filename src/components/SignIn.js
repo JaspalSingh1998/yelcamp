@@ -1,9 +1,43 @@
+import { useState } from "react";
+
 import Logo from "../Assets/Logo.png";
 import Avatar from "../Assets/User Testimonial.svg";
 import * as ROUTES from "../constants/Routes";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { withFirebase } from "./Firebase";
 
-function SignIn() {
+const INITIAL_STATE = {
+  email: "",
+  password: "",
+  error: null,
+};
+
+function SignIn(props) {
+  const [user, setUser] = useState(INITIAL_STATE);
+
+  const { email, password, error } = user;
+
+  const { firebase, history } = props;
+
+  function handleSubmit(event) {
+    firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        console.log(authUser);
+        history.push(ROUTES.ALLCAMPS);
+      })
+      .catch((error) => {
+        console.log(error);
+        setUser({ error });
+      });
+    event.preventDefault();
+  }
+  function handleChange(event) {
+    setUser({ ...user, [event.target.name]: event.target.value });
+  }
+
+  const isInvalid = email === "" || password === "";
+
   return (
     <div className="lg:grid lg:grid-cols-double lg:items-stretch">
       <div className="px-5 py-10 md:px-10 lg:px-32">
@@ -17,7 +51,7 @@ function SignIn() {
         <h1 className="font-bold text-4xl mb-9 mt-32">
           Start exploring camps from all around the world.
         </h1>
-        <div className="md:w-3/4">
+        <form className="md:w-3/4" onSubmit={handleSubmit}>
           <div className="mb-6">
             <label htmlFor="email" className="text-text-muted block mb-4">
               Email
@@ -26,6 +60,8 @@ function SignIn() {
               type="email"
               placeholder="john@example.com"
               name="email"
+              value={email}
+              onChange={handleChange}
               className="p-4 bg-landing-bg text-text-muted w-full rounded-md"
             />
           </div>
@@ -37,10 +73,15 @@ function SignIn() {
               type="password"
               placeholder="At least 6 Characters Long"
               name="password"
+              value={password}
+              onChange={handleChange}
               className="p-4 bg-landing-bg text-text-muted w-full rounded-md"
             />
           </div>
-          <button className="w-full bg-black text-white rounded-md font-bold p-4 mb-4">
+          <button
+            disabled={isInvalid}
+            className="w-full bg-black text-white rounded-md font-bold p-4 mb-4"
+          >
             Login
           </button>
           <p className="text-text-muted">
@@ -49,7 +90,8 @@ function SignIn() {
               Sign up
             </Link>{" "}
           </p>
-        </div>
+          <p>{error && error.message}</p>
+        </form>
       </div>
       <div className="bg-landing-bg py-12 px-5 md:px-10 lg:px-32 lg:flex lg:items-center">
         <div>
@@ -70,4 +112,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default withRouter(withFirebase(SignIn));
