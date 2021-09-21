@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 
 import * as ROUTES from "./constants/Routes";
 import { withAuthentication } from "./components/Session";
+import AddCampground from "./components/AddCampground";
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
             <Navigation />
             <Route exact path={ROUTES.ALLCAMPS} component={AllCamps} />
             <Route exact path={ROUTES.SINGLECAMP} component={SingleCamp} />
+            <Route
+              exact
+              path={ROUTES.ADDCAMPGROUND}
+              component={AddCampground}
+            />
           </React.Fragment>
         </Switch>
       </Router>

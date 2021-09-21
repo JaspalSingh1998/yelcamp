@@ -1,3 +1,6 @@
+import * as ROUTES from "../constants/Routes";
+import { Link } from "react-router-dom";
+
 function Search() {
   return (
     <>
@@ -17,9 +20,9 @@ function Search() {
             Search
           </button>
         </div>
-        <a href="/" className="text-text-muted underline">
+        <Link to={ROUTES.ADDCAMPGROUND} className="text-text-muted underline">
           or add your own campground
-        </a>
+        </Link>
       </div>
     </>
   );
