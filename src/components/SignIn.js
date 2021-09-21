@@ -23,7 +23,6 @@ function SignIn(props) {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then((authUser) => {
-        console.log(authUser);
         history.push(ROUTES.ALLCAMPS);
       })
       .catch((error) => {

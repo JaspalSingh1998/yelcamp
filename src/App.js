@@ -9,6 +9,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 
 import * as ROUTES from "./constants/Routes";
+import { withAuthentication } from "./components/Session";
 
 function App() {
   return (
@@ -29,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthentication(App);
