@@ -1,4 +1,6 @@
 import Chat from "../Assets/Chat Bubble.svg";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../constants/Routes";
 
 function Comments() {
   return (
@@ -33,12 +35,17 @@ function Comments() {
           to ruin the experience.
         </p>
       </div>
-      <button className="bg-black text-white font-bold flex py-4 px-6 rounded-md mt-6 gap-3 lg:ml-auto">
-        <span>
-          <img src={Chat} alt="chat bubble" />
-        </span>{" "}
-        Leave a review
-      </button>
+      <div className="flex justify-end">
+        <Link
+          to={ROUTES.ADDCOMMENT}
+          className="bg-black text-white font-bold flex py-4 px-6 rounded-md mt-6 gap-3 "
+        >
+          <span>
+            <img src={Chat} alt="chat bubble" />
+          </span>{" "}
+          Leave a review
+        </Link>
+      </div>
     </div>
   );
 }

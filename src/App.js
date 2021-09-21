@@ -11,6 +11,7 @@ import SignUp from "./components/SignUp";
 import * as ROUTES from "./constants/Routes";
 import { withAuthentication } from "./components/Session";
 import AddCampground from "./components/AddCampground";
+import AddComment from "./components/AddComment";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               path={ROUTES.ADDCAMPGROUND}
               component={AddCampground}
             />
+            <Route exact path={ROUTES.ADDCOMMENT} component={AddComment} />
           </React.Fragment>
         </Switch>
       </Router>

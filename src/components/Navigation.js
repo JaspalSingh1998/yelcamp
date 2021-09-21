@@ -11,7 +11,7 @@ import { AuthUserContext } from "./Session";
 function Navigation() {
   const authUser = useContext(AuthUserContext);
   return (
-    <div className="container mx-auto py-10 px-5">
+    <div className="container mx-auto py-4 px-5">
       <div className="flex items-center justify-between">
         {authUser ? (
           <NavigationAuth className={authUser} />
@@ -29,7 +29,7 @@ const NavigationAuth = (authUser) => {
       <div className="flex gap-4 items-center">
         <img src={Logo} alt="Logo" />
         <Link
-          to={ROUTES.LANDING}
+          to={ROUTES.ALLCAMPS}
           className="font-bold text-text-muted mt-1 hidden lg:inline-block"
         >
           Home
@@ -57,7 +57,7 @@ const NavigationNonAuth = () => (
     <div className="flex gap-4 items-center">
       <img src={Logo} alt="Logo" />
       <Link
-        to={ROUTES.LANDING}
+        to={ROUTES.ALLCAMPS}
         className="font-bold text-text-muted mt-1 hidden lg:inline-block"
       >
         Home
