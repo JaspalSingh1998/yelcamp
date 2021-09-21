@@ -1,3 +1,5 @@
+import { withAuthorization } from "./Session";
+
 function AddComment() {
   return (
     <div className="container mx-auto py-10 px-5 lg:max-w-xl">
@@ -25,4 +27,5 @@ function AddComment() {
   );
 }
 
-export default AddComment;
+const condition = (authUser) => !!authUser;
+export default withAuthorization(condition)(AddComment);

@@ -1,3 +1,5 @@
+import { withAuthorization } from "./Session";
+
 function AddCampground() {
   return (
     <div className="container mx-auto py-10 px-5 lg:max-w-xl">
@@ -67,5 +69,6 @@ function AddCampground() {
     </div>
   );
 }
+const condition = (authUser) => !!authUser;
 
-export default AddCampground;
+export default withAuthorization(condition)(AddCampground);
