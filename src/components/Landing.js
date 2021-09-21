@@ -1,3 +1,5 @@
+import { useEffect, useContext } from "react";
+
 import Logo from "../Assets/Logo.png";
 import HeroImage from "../Assets/Hero Image (Tablet and Mobile).jpg";
 import HeroImageLarge from "../Assets/Hero Image.jpg";
@@ -6,10 +8,19 @@ import Booking from "../Assets/Booking.svg";
 import PlumGuide from "../Assets/Plum Guide.svg";
 import Checkmark from "../Assets/Checkmark.svg";
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import * as ROUTES from "../constants/Routes";
 
-function Landing() {
+import { AuthUserContext } from "./Session";
+
+function Landing(props) {
+  const { history } = props;
+  const authUser = useContext(AuthUserContext);
+
+  useEffect(() => {
+    authUser && history.push(ROUTES.ALLCAMPS);
+  });
+
   return (
     <div>
       <header className="py-10 px-5 lg:hidden">
@@ -73,4 +84,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default withRouter(Landing);
