@@ -8,6 +8,7 @@ import {
 
 const config = {
   apiKey: "AIzaSyAk7D5thV8C7Uut7eDmSdBZVMqKLTCFyWY",
+  databaseURL: "https://yelpcamp-ecec4-default-rtdb.firebaseio.com",
   authDomain: "yelpcamp-ecec4.firebaseapp.com",
   projectId: "yelpcamp-ecec4",
   storageBucket: "yelpcamp-ecec4.appspot.com",

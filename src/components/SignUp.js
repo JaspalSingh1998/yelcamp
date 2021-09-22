@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { withFirebase } from "./Firebase";
+import { getDatabase, ref, set } from "firebase/database";
 
 import Logo from "../Assets/Logo.png";
 import Avatar from "../Assets/User Testimonial.svg";
@@ -23,7 +24,12 @@ function SignUp(props) {
     firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        console.log(authUser);
+        return set(ref(getDatabase(), "users/" + authUser.user.uid), {
+          email: email,
+        });
+      })
+      .then(() => {
+        setUser({ ...INITIAL_STATE });
         history.push(ROUTES.ALLCAMPS);
       })
       .catch((error) => {
