@@ -22,8 +22,8 @@ class CampDetails extends Component {
       if (snapshot.exists()) {
         const campsObject = snapshot.val();
         const campDetails = campsObject;
-        const obj = campDetails.comments;
-        const commentsList = Object.values(obj);
+        const obj = campDetails.comments || [];
+        const commentsList = Object.values(obj) || [];
         this.setState({
           camp: campDetails,
           comments: commentsList,

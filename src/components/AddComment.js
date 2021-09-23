@@ -10,6 +10,7 @@ import { AuthUserContext } from "./Session";
 const INITIAL_STATE = {
   comment: "",
   author: "",
+  time: "",
 };
 
 function AddComment(props) {
@@ -22,6 +23,7 @@ function AddComment(props) {
     push(ref(getDatabase(), `camps/${props.match.params.id}/comments`), {
       comment,
       author: authUser.displayName,
+      time: Date.now(),
     });
     history.push(`${ROUTES.SINGLECAMP}/${props.match.params.id}`);
     event.preventDefault();
