@@ -24,13 +24,13 @@ function App() {
           <React.Fragment>
             <Navigation />
             <Route exact path={ROUTES.ALLCAMPS} component={AllCamps} />
-            <Route exact path={ROUTES.SINGLECAMP} component={SingleCamp} />
+            <Route path={`${ROUTES.SINGLECAMP}/:id`} component={SingleCamp} />
             <Route
               exact
               path={ROUTES.ADDCAMPGROUND}
               component={AddCampground}
             />
-            <Route path={`${ROUTES.ADDCOMMENT}/:id`} component={AddComment} />
+            <Route exact path={ROUTES.ADDCOMMENT} component={AddComment} />
           </React.Fragment>
         </Switch>
       </Router>
