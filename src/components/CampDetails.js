@@ -35,7 +35,7 @@ class CampDetails extends Component {
     });
   }
   render() {
-    const { name, price, image, description } = this.state.camp;
+    const { name, price, image, description, author } = this.state.camp;
     return (
       <>
         <header className="border border-item-border rounded-md p-9 mb-9">
@@ -45,7 +45,7 @@ class CampDetails extends Component {
             <p className="font-bold">{`$${price}/night`}</p>
           </div>
           <p className="text-text-muted mb-4">{description}</p>
-          <p className="text-text-muted italic">Submitted by Andrew Mike</p>
+          <p className="text-text-muted italic">Submitted by {author}</p>
         </header>
         <Comments />
       </>

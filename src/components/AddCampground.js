@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
@@ -7,14 +8,18 @@ import { getDatabase, ref, set } from "firebase/database";
 import { withRouter } from "react-router";
 import * as ROUTES from "../constants/Routes";
 
+import { AuthUserContext } from "./Session";
+
 const INITIAL_STATE = {
   name: "",
   price: 1,
   image: "",
   description: "",
+  author: "",
 };
 
 function AddCampground(props) {
+  const authUser = useContext(AuthUserContext);
   const [camp, setCamp] = useState(INITIAL_STATE);
   const { name, price, image, description } = camp;
   const { history } = props;
@@ -25,6 +30,7 @@ function AddCampground(props) {
       price,
       image,
       description,
+      author: authUser.displayName,
     });
     history.push(ROUTES.ALLCAMPS);
     event.preventDefault();

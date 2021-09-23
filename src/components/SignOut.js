@@ -11,7 +11,7 @@ function SignOut(props) {
   }
   return (
     <button
-      className="bg-black text-white font-bold px-6 py-4 rounded-md hidden lg:inline-block"
+      className="font-bold px-6 py-4 rounded-md hidden lg:inline-block"
       onClick={handleClick}
     >
       Sign Out

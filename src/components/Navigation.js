@@ -24,7 +24,6 @@ function Navigation() {
 }
 
 const NavigationAuth = (authUser) => {
-  console.log(authUser);
   return (
     <>
       <div className="flex gap-4 items-center">
