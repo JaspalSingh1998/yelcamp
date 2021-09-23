@@ -9,6 +9,7 @@ class CampDetails extends Component {
 
     this.state = {
       loading: false,
+      comments: [],
       camp: [],
     };
   }
@@ -21,8 +22,11 @@ class CampDetails extends Component {
       if (snapshot.exists()) {
         const campsObject = snapshot.val();
         const campDetails = campsObject;
+        const obj = campDetails.comments;
+        const commentsList = Object.values(obj);
         this.setState({
           camp: campDetails,
+          comments: commentsList,
           loading: false,
         });
       } else {
@@ -35,6 +39,7 @@ class CampDetails extends Component {
   }
   render() {
     const { name, price, image, description, author } = this.state.camp;
+    const { comments } = this.state;
     return (
       <>
         <header className="border border-item-border rounded-md p-9 mb-9">
@@ -46,7 +51,7 @@ class CampDetails extends Component {
           <p className="text-text-muted mb-4">{description}</p>
           <p className="text-text-muted italic">Submitted by {author}</p>
         </header>
-        <Comments id={this.props.id} />
+        <Comments id={this.props.id} comments={comments} />
       </>
     );
   }

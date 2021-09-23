@@ -3,7 +3,7 @@ import { withAuthorization } from "./Session";
 import { withRouter } from "react-router";
 import * as ROUTES from "../constants/Routes";
 
-import { getDatabase, set, ref, push } from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 
 import { AuthUserContext } from "./Session";
 

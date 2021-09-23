@@ -1,13 +1,6 @@
 import React from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
-// import MountUlap from "../Assets/Camp Images/Mount Ulap.jpg";
-// import CalaguasIslands from "../Assets/Camp Images/Calaguas Island.jpg";
-// import OnayBeach from "../Assets/Camp Images/Onay Beach.jpg";
-// import SevenSistersWaterfall from "../Assets/Camp Images/Seven Sisters Waterfall.jpg";
-// import LatikRiverside from "../Assets/Camp Images/Latik Riverside.jpg";
-// import BuloySprings from "../Assets/Camp Images/Buloy Springs.jpg";
-
 import { Link } from "react-router-dom";
 import * as ROUTES from "../constants/Routes";
 
