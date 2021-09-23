@@ -1,27 +1,50 @@
 import { Component } from "react";
-import MountUlap from "../Assets/Camp Images/Mount Ulap.jpg";
+import { getDatabase, ref, onValue } from "firebase/database";
+
+// import MountUlap from "../Assets/Camp Images/Mount Ulap.jpg";
 import Comments from "./Comments";
 
 class CampDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      camp: [],
+    };
+  }
+  componentDidMount() {
+    this.setState({ loading: true });
+
+    const db = getDatabase();
+    const campsRef = ref(db, `camps/${this.props.id}`);
+    onValue(campsRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const campsObject = snapshot.val();
+        const campDetails = campsObject;
+        this.setState({
+          camp: campDetails,
+          loading: false,
+        });
+      } else {
+        this.setState({
+          camp: [],
+          loading: false,
+        });
+      }
+    });
+  }
   render() {
+    const { name, price, image, description } = this.state.camp;
     return (
       <>
         <header className="border border-item-border rounded-md p-9 mb-9">
-          <img
-            src={MountUlap}
-            alt="Mount Ulap"
-            className="rounded-md mb-6 w-full"
-          />
+          <img src={image} alt={name} className="rounded-md mb-6 w-full" />
           <div className="flex justify-between items-center mb-4">
-            <h2 className="font-bold text-2xl">Mount Ulap</h2>
-            <p className="font-bold">$104.99/night</p>
+            <h2 className="font-bold text-2xl">{name}</h2>
+            <p className="font-bold">{`$${price}/night`}</p>
           </div>
-          <p className="text-text-muted mb-4">
-            Mount Ulap is a 7.7 kilometer moderately trafficked point-to-point
-            trail located near Tuba, Benguet, Philippines that offers the chance
-            to see wildlife and is rated as moderate. The trail is primarily
-            used for hiking.
-          </p>
+          <p className="text-text-muted mb-4">{description}</p>
           <p className="text-text-muted italic">Submitted by Andrew Mike</p>
         </header>
         <Comments />
