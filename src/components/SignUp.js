@@ -8,6 +8,7 @@ import * as ROUTES from "../constants/Routes";
 import { Link, withRouter } from "react-router-dom";
 
 const INITIAL_STATE = {
+  name: "",
   email: "",
   password: "",
   error: null,
@@ -16,7 +17,7 @@ const INITIAL_STATE = {
 function SignUp(props) {
   const [user, setUser] = useState(INITIAL_STATE);
 
-  const { email, password, error } = user;
+  const { name, email, password, error } = user;
 
   const { firebase, history } = props;
 
@@ -24,8 +25,10 @@ function SignUp(props) {
     firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then((authUser) => {
+        firebase.doUpdateProfile(name);
         return set(ref(getDatabase(), "users/" + authUser.user.uid), {
           email: email,
+          name: name,
         });
       })
       .then(() => {
@@ -43,7 +46,7 @@ function SignUp(props) {
     setUser({ ...user, [event.target.name]: event.target.value });
   }
 
-  const isInvalid = email === "" || password === "";
+  const isInvalid = name === "" || email === "" || password === "";
 
   return (
     <div className="lg:grid lg:grid-cols-double lg:items-stretch">
@@ -59,6 +62,19 @@ function SignUp(props) {
           Start exploring camps from all around the world.
         </h1>
         <form onSubmit={handleSubmit} className="md:w-3/4">
+          <div className="mb-6">
+            <label htmlFor="name" className="text-text-muted block mb-4">
+              Name
+            </label>
+            <input
+              type="text"
+              placeholder="John Doe"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              className="p-4 bg-landing-bg text-text-muted w-full rounded-md"
+            />
+          </div>
           <div className="mb-6">
             <label htmlFor="email" className="text-text-muted block mb-4">
               Email

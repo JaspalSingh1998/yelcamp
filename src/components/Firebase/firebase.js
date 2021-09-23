@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 
 const config = {
@@ -26,6 +27,11 @@ class Firebase {
 
   doSignInWithEmailAndPassword = (email, password) =>
     signInWithEmailAndPassword(this.auth, email, password);
+
+  doUpdateProfile = (displayName) =>
+    updateProfile(this.auth.currentUser, {
+      displayName,
+    });
 
   doSignOut = () => signOut(this.auth);
 }

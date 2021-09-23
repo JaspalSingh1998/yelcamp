@@ -24,6 +24,7 @@ function Navigation() {
 }
 
 const NavigationAuth = (authUser) => {
+  console.log(authUser);
   return (
     <>
       <div className="flex gap-4 items-center">
@@ -40,9 +41,7 @@ const NavigationAuth = (authUser) => {
           to={ROUTES.SIGN_IN}
           className="text-text-muted px-6 py-4 rounded-md hidden lg:inline-block"
         >
-          {authUser.className.displayName
-            ? authUser.className.displayName
-            : authUser.className.email}
+          {authUser.className.displayName}
         </Link>
 
         <SignOut />
