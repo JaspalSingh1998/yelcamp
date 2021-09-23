@@ -65,7 +65,7 @@ class CampsGrid extends React.Component {
               </div>
             </header>
             <Link
-              to={ROUTES.SINGLECAMP}
+              to={`${ROUTES.SINGLECAMP}/${camp.uid}`}
               className="inline-block text-center w-full font-bold border border-item-border py-4 rounded-md"
             >
               View Campground

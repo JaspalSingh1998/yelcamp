@@ -30,7 +30,7 @@ function App() {
               path={ROUTES.ADDCAMPGROUND}
               component={AddCampground}
             />
-            <Route exact path={ROUTES.ADDCOMMENT} component={AddComment} />
+            <Route path={`${ROUTES.ADDCOMMENT}/:id`} component={AddComment} />
           </React.Fragment>
         </Switch>
       </Router>
