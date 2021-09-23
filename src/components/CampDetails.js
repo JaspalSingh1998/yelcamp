@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 
-// import MountUlap from "../Assets/Camp Images/Mount Ulap.jpg";
 import Comments from "./Comments";
 
 class CampDetails extends Component {
@@ -47,7 +46,7 @@ class CampDetails extends Component {
           <p className="text-text-muted mb-4">{description}</p>
           <p className="text-text-muted italic">Submitted by {author}</p>
         </header>
-        <Comments />
+        <Comments id={this.props.id} />
       </>
     );
   }
